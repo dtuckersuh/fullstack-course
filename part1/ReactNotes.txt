@@ -1,0 +1,7 @@
+Core philosophy of React is composing applications from many specialized reusable components
+
+props: passing data to components
+
+React component names must be capitalized
+
+Content of React component usually needs to contain one root element

@@ -1,0 +1,11 @@
+Create diagram depicting sitaution where user creates new note on page by writing into text field and clicking submit button
+
+browser -> server: HTTP POST https://fullstack-exampleapp.herokuapp.com/new_note
+    - browser sends note data as body of POST request
+
+server -> browser: HTTP 302 (URL redirect)
+    - server accesses data, creates new note object, adds it to notes array and calls for redirect to notes page
+
+browser -> server: HTTP GET main.css, main.js, data.json
+    - browser re-renders stylesheet, js code, and raw data with the new note added
+

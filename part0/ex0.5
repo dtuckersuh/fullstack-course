@@ -1,0 +1,12 @@
+Create a diagram depicting the situation where the user goes to the SPA version of the notes app
+
+browser -> server: HTTP GET (HTML page, CSS, JS)
+
+server -> browser: spa, main.css, spa.js, data.json
+
+User creates new note:
+    - browser creates new note, adds it to note list, rerenders list, sends note to server
+browser -> server: HTTP POST /new_note_spa
+    - payload: new note JSON data
+
+server -> browser: 201 status code
