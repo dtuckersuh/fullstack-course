@@ -1,0 +1,16 @@
+Event handlers and Callback functions
+    - Application code does not invoke callback functions itself
+    - The runtime environemnt - the browser, invokes the function when the event has occurred 
+
+AJAX
+    - Asynchronous Javascript and XML
+    - Fetches content to web pages using JS included in HTML without re-rendering the page
+
+Single page app
+    - Comprise only one HTML page fetched from server
+    - Contents are manipulated with JS
+    - 'Content-type' header tells us data type
+
+Javascript-libraries
+    - JQuery
+        * Cross-browser compatibility
