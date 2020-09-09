@@ -1,0 +1,36 @@
+Passing state to child components
+    - One best practice in React is to lift the state up in the component hierarchy
+        * "Often, several components need to reflect the same changing data. We recommend lifting the shared state up to their closest common ancestor"
+
+Using the State Hook
+    - A Hook is a special function that lets you 'hook into' React features
+        * useState is a Hook that lets you add React state to function components
+        * const [count, setCount] = useState(0);
+            - declares 'count' state variable
+            - useState takes 0 as the initial state
+            - useState returns [the current state, a function that updates it]
+
+Changes in state cause rerendering
+    
+Object Spread syntax (...)
+    - Allows an iterable such as an array expression or string to be expanded in places where zero or more arguments (function calls) or elements
+        (array literals) are expected
+
+It is forbidden in React to mutate state directly, since it can result in unexpected side effects
+    - Changing state always has to be done by setting the state to a new object
+
+It is recommended to split state into multiple state variables based on which values tend to change together
+
+join() method creates and returns a new string by concatenating all the elements in an array, separated by commas or specified separator
+    - const elements = ['Fire', 'Air', 'Water']
+    - console.log(elements.join())
+        => "Fire,Air,Water"
+
+Conditional rendering
+    * When a component renders completely different React elements depending on the state of the application
+
+Rules of Hooks
+    - useState function must not be called from inside of a loop, conditional expression, or any place not a function defining a component
+        * To ensure hooks are always called in the same order
+
+Do not define components within components
