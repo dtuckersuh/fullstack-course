@@ -1,0 +1,35 @@
+Forms
+---------
+- Store notes in App component's state to get page to update when new notes are added
+    * useState() to define initial notes state
+- Add HTML form to App component
+- Use state's addNote as event handler to HTML form onSubmit
+    * const addNote = (event) => {
+        event.preventDefault()
+        console.log('button clicked', event.target)
+    }
+    * event parameter is the event that triggers the call to the event handler function
+    * preventDefault() prevents default action of submitting a form, which causes the page to reload
+- How do we access data contained in form's input element?
+    * First method: controlled components
+        - Combine HTML form elements and React state to make React state "single source of truth"
+        - React controls input form element's value
+        - Allows us to pass form's input value to other UI elements or reset it from other event handlers
+- Application:
+    * Add new piece of state newNote for storing user input and set it to input element's value attribute
+    * In order to enable editing of input element, register an event handler that synchronizes changes made to the input w/ component's state
+    * target property of event refers to controlled input element and target.value refers to input value
+    * No need to call preventDefault() because input change causes no default action
+    * Create new noteObject that receives content from component's newNote state
+    * Concatenate new note to list of notes
+        - NEVER MUTATE STATE DIRECTLY in React
+
+Filtering Displayed Elements
+    - Filter notes to only show important notes
+        * Items of notesToShow depends on state of component (Show all or filter)
+        * filter() 
+    - Add toggle functionality for showAll state from user interface
+
+Exercise Notes
+    - Sometimes useful to render state and other variables for debugging
+        * <div>debug: { newName }</div>
