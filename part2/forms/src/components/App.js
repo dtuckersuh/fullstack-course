@@ -1,45 +1,45 @@
 import React, { useState } from 'react';
 
+import PersonForm from './PersonForm'
+import Persons from './Persons'
+import Filter from './Filter'
+
 const App = () => {
     const [ persons, setPersons ] = useState([
-        { name: 'Arto Hellas', key: 'Hellas'}
-    ])
-    const [ newName, setNewName ] = useState('')
-
-    const addPerson = (event) => {
-        event.preventDefault()
-        if (persons.some((person) => person.name === newName)){
-            window.alert(`${newName} already added!`)
-        } else {
-            const personObject = {
-                name: newName,
-                key: newName
-            }
-            setPersons(persons.concat(personObject)) 
-            setNewName('')
+        { 
+            name: 'Arto Hellas', 
+            number: '040-1234567'
+        },
+        {
+            name: 'after',
+            number: '452-234512'
+        },
+        {
+            name: 'the',
+            number: '231-123451'
+        },
+        {
+            name: 'party',
+            number: '342-54612'
         }
-    }
+    ])
 
-    const handleNameChange = (event) => {
-        setNewName(event.target.value)
-    }
+    const peopleToShow = persons
+
+    const [ search, setSearch ] = useState(false)
+    const [ searchPerson, setSearchPerson ] = useState('')
 
     return (
         <div>
             <h2>Phonebook</h2>
-            <form onSubmit={addPerson}>
-                <div>
-                    name: <input value={newName} onChange={handleNameChange}/>
-                </div>
-                <div>
-                    <button type="submit">add</button>
-                </div>
-            </form>
-            <h2>Numbers</h2>
-            <div>
-                {persons.map(person => <p>{person.name}</p>)}
-            </div>
-            <div>debug: { newName }</div>
+            <Filter persons={persons} peopleToShow={peopleToShow} 
+                search={search} setSearch={setSearch} 
+                searchPerson={searchPerson} setSearchPerson={setSearchPerson}/>
+            <h3>Add a new </h3>
+            <PersonForm persons={persons} setPersons={setPersons} /> 
+            <h3>Numbers</h3>
+            <Persons peopleToShow={peopleToShow} search={search} 
+                searchPerson={searchPerson}/>
         </div>
     )
 }
