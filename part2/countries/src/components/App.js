@@ -8,6 +8,7 @@ const App = () => {
 
     const handleCountryChange = (event) => {
         setCountry(event.target.value);
+        setSearchResult(countries.filter(search => search.name.toLowerCase().includes(country)));
     }
 
     useEffect(() => {
@@ -18,24 +19,14 @@ const App = () => {
             })
     }, [])
 
-    const searchCountry = (event) => {
-        event.preventDefault();
-        setSearchResult(countries.filter(country => country === event.target.value));
-    }
-
-    const countriesToShow = searchResult.length > 10 ? 
-                                <p>Too many matches, specify another filter</p>
-                                : searchResult.map(result => {
-                                    <p>result</p>
-                                })
     return (
         <div>
-            <form onSubmit={searchCountry}>
-                <div>
-                    find countries <input value={country} onChange={handleCountryChange} />
-                </div>
-            </form>
             <div>
+                find countries <input value={country} onChange={handleCountryChange} />
+            </div>
+            <div>
+                { searchResult.length > 10 ? <p>Too many matches, specify another filter</p>
+                    : searchResult.map(search => <p key={search.alpha2Code}>{search.name}</p>)}
             </div>
         </div>
     );
