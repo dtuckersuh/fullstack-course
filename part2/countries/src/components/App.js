@@ -1,16 +1,23 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
+import Countries from './Countries'
+import SearchField from './SearchField';
+
 const App = () => {
     const [ countries, setCountries ] = useState([]);
-    const [ searchResult, setSearchResult ] = useState([]);
-    const [ country, setCountry ] = useState('');
+    const [ searchInput, setSearchInput ] = useState('');
 
     const handleCountryChange = (event) => {
-        setCountry(event.target.value);
-        setSearchResult(countries.filter(search => search.name.toLowerCase().includes(country)));
+        setSearchInput(event.target.value);
     }
 
+    const showCountry = (event) => {
+        setSearchInput(event.target.value);
+    }
+
+
+    // Fetch data from Countries API
     useEffect(() => {
         axios
             .get('https://restcountries.eu/rest/v2/all')
@@ -19,14 +26,14 @@ const App = () => {
             })
     }, [])
 
+
     return (
         <div>
             <div>
-                find countries <input value={country} onChange={handleCountryChange} />
+                <SearchField value={searchInput} onChange={handleCountryChange} />
             </div>
             <div>
-                { searchResult.length > 10 ? <p>Too many matches, specify another filter</p>
-                    : searchResult.map(search => <p key={search.alpha2Code}>{search.name}</p>)}
+                <Countries countries={countries} searchInput={searchInput} showCountry={showCountry} />
             </div>
         </div>
     );
